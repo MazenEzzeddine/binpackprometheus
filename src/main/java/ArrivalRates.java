@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +35,9 @@ public class ArrivalRates {
 
 
     static void arrivalRateTopic1() throws ExecutionException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(3))
+                .build();
         ////////////////////////////////////////////////////
         List<URI> partitions = new ArrayList<>();
         try {
@@ -132,7 +135,12 @@ public class ArrivalRates {
     private static void queryLatency()  {
 
 
-        HttpClient client = HttpClient.newHttpClient();
+        //HttpClient client = HttpClient.newHttpClient();
+
+
+        HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(3))
+                .build();
 
 
         List<URI> latencies = new ArrayList<>();
