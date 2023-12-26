@@ -30,7 +30,7 @@ public class Main {
             Main.QueryingPrometheus();
             log.info("Sleeping for 1 seconds");
             log.info("========================================");
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         }
     }
 
@@ -38,7 +38,6 @@ public class Main {
     static void QueryingPrometheus() throws ExecutionException, InterruptedException {
         ArrivalRates.arrivalRateTopic1();
 
-        //ArrivalRatesStrimzi.arrivalRateTopic1();
 
         if (ArrivalRates.processingRate != 0) {
             scaleLogic();
@@ -48,7 +47,6 @@ public class Main {
 
     private static void scaleLogic() throws InterruptedException, ExecutionException {
         if  (Duration.between(bp.LastUpScaleDecision, Instant.now()).getSeconds() >10){
-           // ArrivalRatesStrimzi.arrivalRateTopic1();
 
             bp.scaleAsPerBinPack();
         } else {

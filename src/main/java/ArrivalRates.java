@@ -35,9 +35,12 @@ public class ArrivalRates {
 
 
     static void arrivalRateTopic1() throws ExecutionException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder()
-                .connectTimeout(Duration.ofSeconds(3))
-                .build();
+        HttpClient client = HttpClient.newHttpClient();
+//                .connectTimeout(Duration.ofSeconds(3))
+//                .build();
+
+
+
         ////////////////////////////////////////////////////
         List<URI> partitions = new ArrayList<>();
         try {
@@ -68,7 +71,7 @@ public class ArrivalRates {
         List<CompletableFuture<String>> partitionsfutures = partitions.stream()
                 .map(target -> client
                         .sendAsync(
-                                HttpRequest.newBuilder(target).GET().build(),
+                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofSeconds(2)).build(),
                                 HttpResponse.BodyHandlers.ofString())
                         .thenApply(HttpResponse::body))
                 .collect(Collectors.toList());
@@ -77,7 +80,7 @@ public class ArrivalRates {
         List<CompletableFuture<String>> partitionslagfuture = partitionslag.stream()
                 .map(target -> client
                         .sendAsync(
-                                HttpRequest.newBuilder(target).GET().build(),
+                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofSeconds(2)).build(),
                                 HttpResponse.BodyHandlers.ofString())
                         .thenApply(HttpResponse::body))
                 .collect(Collectors.toList());
@@ -135,12 +138,12 @@ public class ArrivalRates {
     private static void queryLatency()  {
 
 
-        //HttpClient client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newHttpClient();
 
-
+/*
         HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(3))
-                .build();
+                .build();*/
 
 
         List<URI> latencies = new ArrayList<>();
@@ -157,7 +160,7 @@ public class ArrivalRates {
         List<CompletableFuture<String>> latenciesFuture = latencies.stream()
                 .map(target -> client
                         .sendAsync(
-                                HttpRequest.newBuilder(target).GET().build(),
+                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofSeconds(2)).build(),
                                 HttpResponse.BodyHandlers.ofString())
                         .thenApply(HttpResponse::body))
                 .collect(Collectors.toList());
