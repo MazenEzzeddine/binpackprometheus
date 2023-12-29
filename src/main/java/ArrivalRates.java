@@ -34,8 +34,11 @@ public class ArrivalRates {
     }
 
 
+   static  HttpClient client = HttpClient.newHttpClient();
+
+
+
     static void arrivalRateTopic1() throws ExecutionException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
 //                .connectTimeout(Duration.ofSeconds(3))
 //                .build();
 
@@ -71,7 +74,7 @@ public class ArrivalRates {
         List<CompletableFuture<String>> partitionsfutures = partitions.stream()
                 .map(target -> client
                         .sendAsync(
-                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofSeconds(2)).build(),
+                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofMillis(500)).build(),
                                 HttpResponse.BodyHandlers.ofString())
                         .thenApply(HttpResponse::body))
                 .collect(Collectors.toList());
@@ -80,7 +83,7 @@ public class ArrivalRates {
         List<CompletableFuture<String>> partitionslagfuture = partitionslag.stream()
                 .map(target -> client
                         .sendAsync(
-                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofSeconds(2)).build(),
+                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofMillis(500)).build(),
                                 HttpResponse.BodyHandlers.ofString())
                         .thenApply(HttpResponse::body))
                 .collect(Collectors.toList());
@@ -138,7 +141,6 @@ public class ArrivalRates {
     private static void queryLatency()  {
 
 
-        HttpClient client = HttpClient.newHttpClient();
 
 /*
         HttpClient client = HttpClient.newBuilder()
@@ -160,7 +162,7 @@ public class ArrivalRates {
         List<CompletableFuture<String>> latenciesFuture = latencies.stream()
                 .map(target -> client
                         .sendAsync(
-                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofSeconds(2)).build(),
+                                HttpRequest.newBuilder(target).GET().timeout(Duration.ofMillis(500)).build(),
                                 HttpResponse.BodyHandlers.ofString())
                         .thenApply(HttpResponse::body))
                 .collect(Collectors.toList());

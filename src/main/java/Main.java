@@ -38,7 +38,6 @@ public class Main {
     static void QueryingPrometheus() throws ExecutionException, InterruptedException {
         ArrivalRates.arrivalRateTopic1();
 
-
         if (ArrivalRates.processingRate != 0) {
             scaleLogic();
         }
