@@ -48,11 +48,11 @@ public class ArrivalRates {
         List<URI> partitions = new ArrayList<>();
         try {
             partitions = Arrays.asList(
-                    new URI(ConstantsSmooth.topic1p0),
-                    new URI(ConstantsSmooth.topic1p1),
-                    new URI(ConstantsSmooth.topic1p2),
-                    new URI(ConstantsSmooth.topic1p3),
-                    new URI(ConstantsSmooth.topic1p4)
+                    new URI(Constants.topic1p0),
+                    new URI(Constants.topic1p1),
+                    new URI(Constants.topic1p2),
+                    new URI(Constants.topic1p3),
+                    new URI(Constants.topic1p4)
             );
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -60,11 +60,11 @@ public class ArrivalRates {
         List<URI> partitionslag = new ArrayList<>();
         try {
             partitionslag = Arrays.asList(
-                    new URI(ConstantsSmooth.topic1p0lag),
-                    new URI(ConstantsSmooth.topic1p1lag),
-                    new URI(ConstantsSmooth.topic1p2lag),
-                    new URI(ConstantsSmooth.topic1p3lag),
-                    new URI(ConstantsSmooth.topic1p4lag)
+                    new URI(Constants.topic1p0lag),
+                    new URI(Constants.topic1p1lag),
+                    new URI(Constants.topic1p2lag),
+                    new URI(Constants.topic1p3lag),
+                    new URI(Constants.topic1p4lag)
             );
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -151,8 +151,8 @@ public class ArrivalRates {
         List<URI> latencies = new ArrayList<>();
         try {
             latencies = Arrays.asList(
-                    new URI(ConstantsSmooth.processingLatencyAvg),
-                    new URI(ConstantsSmooth.processingLatencyPercentileAvg)
+                    new URI(Constants.processingLatencyAvg),
+                    new URI(Constants.processingLatencyPercentileAvg)
             );
         } catch (URISyntaxException e) {
             e.printStackTrace();
