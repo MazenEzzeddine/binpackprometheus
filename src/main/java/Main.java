@@ -38,19 +38,25 @@ public class Main {
     static void QueryingPrometheus() throws ExecutionException, InterruptedException {
         ArrivalRates.arrivalRateTopic1();
 
-        if (ArrivalRates.processingRate != 0) {
+       /* if (ArrivalRates.processingRate != 0) {
             scaleLogic();
-        }
+        }*/
+
+
+        scaleLogic();
     }
 
 
     private static void scaleLogic() throws InterruptedException, ExecutionException {
-        if  (Duration.between(bp.LastUpScaleDecision, Instant.now()).getSeconds() >10){
+     /*   if  (Duration.between(bp.LastUpScaleDecision, Instant.now()).getSeconds() >10){
 
             bp.scaleAsPerBinPack();
         } else {
             log.info("No scale group 1 cooldown");
         }
+    }*/
+
+        BinPackRestructure200.scaleAsPerBinPackRestructured();
     }
 
 }
