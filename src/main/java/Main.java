@@ -56,7 +56,10 @@ public class Main {
         }
     }*/
 
-        BinPackRestructure200.scaleAsPerBinPackRestructured();
+        //BinPackRestructure200.scaleAsPerBinPackRestructured();
+
+        BinPackRestructureWithLagLag.scaleAsPerBinPackRestructured();
+
     }
 
 }
