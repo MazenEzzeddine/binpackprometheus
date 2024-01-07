@@ -116,9 +116,13 @@ public class BinPackRestructureWithLagLag {
         List<Consumer> consumers = new ArrayList<>();
         int consumerCount = 1;
         float fraction = 0.9f;
-        Collections.sort(partsReset, Collections.reverseOrder());
 
         while (true) {
+
+            partsReset = new ArrayList<>(ArrivalRates.topicpartitions);
+            resetPartitions(fraction);
+            Collections.sort(partsReset, Collections.reverseOrder());
+
             int j;
             consumers.clear();
             for (int t = 0; t < consumerCount; t++) {
@@ -203,8 +207,11 @@ public class BinPackRestructureWithLagLag {
         double fractiondynamicAverageMaxConsumptionRate = mu * 0.4;
 
         //start the bin pack FFD with sort
-        Collections.sort(partsReset, Collections.reverseOrder());
+        //Collections.sort(partsReset, Collections.reverseOrder());
         while (true) {
+            partsReset = new ArrayList<>(ArrivalRates.topicpartitions);
+            resetPartitions(0.4f);
+            Collections.sort(partsReset, Collections.reverseOrder());
             int j;
             consumers.clear();
             for (int t = 0; t < consumerCount; t++) {
