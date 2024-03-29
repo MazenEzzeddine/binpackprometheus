@@ -140,7 +140,7 @@ public class ArrivalRates {
 
     private static void queryLatency()  {
 
-
+// this vserion  with prometheus
 
 /*
         HttpClient client = HttpClient.newBuilder()
